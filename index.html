@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>border-radius-generator</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	
+	<section class="wrapper">
+		<div class="switch">
+			<header>
+		
+		<h3>CSS border radius generator</h3>
+			</header>
+			<div class="switch-group">
+				<h4>1. border-top-left-radius</h4>
+				<div class="controlers">
+					<label>Horizontal radius:</label>
+					<input type="range" min="0" value="0" max="1000" onkeyup="radius('1', this.value) " onchange="radius('1', this.value)">
+				</div>
+					<div class="controlers">
+					<label>Vertical radius:</label>
+					<input type="range" min="0" value="0" max="1000" onkeyup="radius('1-1', this.value)" onchange="radius('1-1', this.value)">
+				</div>
+			</div>
+
+			<div class="switch-group">
+				<h4>2. border-top-right-radius</h4>
+				<div class="controlers">
+					<label>Horizontal radius:</label>
+					<input type="range" min="0" value="0" max="1000" onkeyup="radius('2', this.value)"onchange="radius('2', this.value)">
+				</div>
+					<div class="controlers">
+					<label>Vertical radius:</label>
+					<input type="range" min="0" value="0" max="1000" onkeyup="radius('2-1', this.value)" onchange="radius('2-1', this.value)">
+				</div>
+			</div>
+
+			<div class="switch-group">
+				<h4>3. border-bottom-right-radius</h4>
+				<div class="controlers">
+					<label>Horizontal radius:</label>
+					<input type="range" min="0" value="0" max="1000" onkeyup="radius('3', this.value)"  onchange="radius('3', this.value)">
+				</div>
+					<div class="controlers">
+					<label>Vertical radius:</label>
+					<input type="range" min="0" value="0" max="1000" onkeyup="radius('3-1', this.value)" onchange="radius('3-1', this.value)">
+				</div>
+			</div>
+			<div class="switch-group">
+				<h4>4. border-bottom-left-radius</h4>
+				<div class="controlers">
+					<label>Horizontal radius:</label>
+					<input type="range" min="0" value="0" max="1000" onkeyup="radius('4', this.value)" onchange="radius('4', this.value)">
+				</div>
+					<div class="controlers">
+					<label>Vertical radius:</label>
+					<input type="range" min="0" value="0" max="1000" onkeyup="radius('4-1', this.value)" onchange="radius('4-1', this.value)">
+				</div>
+			</div>
+		</div>
+		<div class="preview">
+			<div class="box">
+				{<br>
+					border-radius: 0px 0px 0px 0px / 0px 0px 0px 0px
+				<br>}
+			</div>
+		</div>
+	</section>
+</body>
+<script type="text/javascript">
+	let box=document.querySelector('.box'),
+	border_radius='0px 0px 0px 0px / 0px 0px 0px 0px',
+	topLh=0,
+	topRh=0,
+	bottomRh=0,
+	bottomlh=0,
+	topLv=0,
+	topRv=0,
+	bottomRv=0,
+	bottomlv=0;
+
+	function radius(corner, value){
+		
+		topLh=corner==1?value:topLh,
+		topRh=corner==2?value:topRh,
+		bottomRh=corner==3?value:bottomRh,
+		bottomlh=corner==4?value:bottomlh,
+		topLv=corner=="1-1"?value:topLv,
+		topRv=corner=="2-1"?value:topRv,
+		bottomRv=corner=="3-1"?value:bottomRv,
+		bottomlv=corner=="4-1"?value:bottomlv;
+
+		
+		 draw();
+		
+	}
+	
+	function draw(){
+		border_radius= `${topLh}px ${topRh}px ${bottomRh}px ${bottomlh}px/${topLv}px ${topRv}px ${bottomRv}px ${bottomlv}px`
+		box.style.borderRadius=border_radius;
+		box.innerHTML=`{<br> border-radius: ${border_radius} <br>}`
+	}
+</script>
+
+<style type="text/css">
+
+</style>
+</html>
